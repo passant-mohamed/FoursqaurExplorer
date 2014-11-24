@@ -50,9 +50,11 @@ public class ActivitywebView extends Activity{
 
 		                Log.v(TAG, "OAuth complete, token: [" + accessToken + "].");
 
-		                Toast.makeText(ActivitywebView.this, "Token: " + accessToken, Toast.LENGTH_SHORT).show();
+		              //  Toast.makeText(ActivitywebView.this, "Token: " + accessToken, Toast.LENGTH_SHORT).show();
 		                 prefs.edit().putString(FoursquareKyes.TOKEN_KEY, accessToken).commit();
-		                startActivity(new Intent(ActivitywebView.this,MainActivity.class));  // After Successfull Login the Web view will Redirected to Nearest_Places_View Activity
+		               
+		                 startActivity(new Intent(ActivitywebView.this,MainActivity.class)
+		                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP) );  
 		            }
 		        }
 		    });

@@ -185,20 +185,10 @@ SharedPreferences prefs;
 			});
 			
 			
+			task.execute();
 			if(NetworkingUtils.isNetworkConnected(getActivity()))
 			{
-				if(prefs.contains(FoursquareKyes.TOKEN_KEY))
-					
-				{
-					task.execute();
-					
-				}
 				
-				else
-				{
-					Intent intent=new Intent(getActivity(), ActivitywebView.class);
-					startActivity(intent);
-				}
 			}
 			else
 			{
@@ -463,7 +453,19 @@ SharedPreferences prefs;
 public void onResume() {
 	// TODO Auto-generated method stub
 	super.onResume();
-	getLocation();
+	if(prefs.contains(FoursquareKyes.TOKEN_KEY))
+		
+	{
+		getLocation();
+		
+	}
+	
+	else
+	{
+		Intent intent=new Intent(getActivity(), ActivitywebView.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
 	
 		
 	 
